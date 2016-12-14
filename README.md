@@ -1,5 +1,7 @@
 # JavaScript30
 
+<img src="js30.png">
+
 Completed exercises from https://javascript30.com
 
 Live versions:
