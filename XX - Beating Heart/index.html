@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Rate</title>
+</head>
+<body>
+  <h2>Heart Rate</h2>
+
+  <div class="controls">
+    <span class="leftlabel">Slow</span>
+    <input type="range" name="hr" min="0" max="200" value="60" data-sizing="px">
+    <span class="rightlabel">Fast</span>
+  </div>
+
+  <div id="heart">
+    <img src="assets/transheart.png">
+  </div>
+
+  <iframe src="https://ghbtns.com/github-btn.html?user=collinferry&type=follow&count=true&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe>
+
+  <audio src="assets/beatsound.wav" id="beatsound"></audio>
+
+  <style>
+
+    :root {
+      --hr: 1s;
+    }
+
+    .hl {
+      color: var(--color);
+    }
+
+    body {
+      text-align: center;
+    }
+
+    body {
+      background: url("assets/heart.jpg");
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width:400px;
+    }
+
+    iframe {
+      margin-left: 25px;
+    }
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale( .75);
+    }
+    20% {
+      transform: scale( 1);
+    }
+    40% {
+      transform: scale( .75);
+    }
+    60% {
+      transform: scale( 1);
+    }
+    80% {
+      transform: scale( .75);
+    }
+    100% {
+      transform: scale( .75);
+    }
+  }
+
+#heart {
+  position: center;
+  opacity: 0.8;
+  animation: heartbeat var(--hr) infinite;
+}
+
+  </style>
+
+  <script>
+    beatsound.play();
+    const inputs = document.querySelectorAll('.controls input');
+
+    function beat() {
+      document.documentElement.style.setProperty('--hr', (60/this.value) + 's');
+      beatsound.playbackRate = (this.value/60);
+      console.log(beatsound.playbackRate);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', beat));
+    inputs.forEach(input => input.addEventListener('mousemove', beat));
+
+  </script>
+
+</body>
+</html>
